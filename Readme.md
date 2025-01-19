@@ -75,5 +75,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ### Connect with Me
 
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/srikar-ambula-66a647277/)
+- **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/srikar-ambula-66a647277/)
 - **GitHub**: [Srikar4510](https://github.com/Srikar4510)
