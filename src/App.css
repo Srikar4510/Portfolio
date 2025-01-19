@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-clip-text {
+	-webkit-background-clip: text;
+	background-clip: text;
+  }
+  
+  .text-transparent {
+	color: transparent;
+  }
+
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+@-webkit-keyframes zoomIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	50% {
+		opacity: 1;
+	}
+}
+@keyframes zoomIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale3d(0.3, 0.3, 0.3);
+		transform: scale3d(0.3, 0.3, 0.3);
+	}
+	50% {
+		opacity: 1;
+	}
+}
+
+.area {
+	background: #1a202c;
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	z-index: -1;
+}
+
+
+.bg-universal {
+	background: linear-gradient(to right, #2e2e2e, #232323);
+	min-height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  .circles {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	overflow: hidden;
+  }
+  
+  .circles li {
+	position: absolute;
+	display: block;
+	list-style: none;
+	width: 20px;
+	height: 20px;
+	background: rgba(255, 255, 255, 0.2);
+	animation: animate 25s linear infinite;
+	bottom: -150px;
+  }
+  
+  .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+  .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+  .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+  .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+  .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+  .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+  .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+  .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+  .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+  .circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+  
+  @keyframes animate {
+	0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+	100% { transform: translateY(-1000px) rotate(720deg); opacity: 0.6; border-radius: 80%; }
+  }
+  
+nav {
+	background-color: #2d3748;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+	color: #ffffff;
+	transition: color 0.3s;
+}
+
+nav a:hover {
+	color: #63b3ed;
+}
+
+form {
+	background-color: #2d3748;
+	border-radius: 0.5rem;
+	padding: 1.5rem;
+}
+
+form input,
+form textarea {
+	background-color: #4a5568;
+	border: none;
+	color: #ffffff;
+	padding: 0.75rem;
+	border-radius: 0.375rem;
+	transition: background-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+	background-color: #c2e5fd;
+	outline: none;
+}
+
+form button {
+	background-color: #63b3ed;
+	color: #ffffff;
+	padding: 0.75rem 1.5rem;
+	border: none;
+	border-radius: 0.375rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+form button:hover {
+	background-color: #4299e1;
+}
+
+.footer {
+    background: linear-gradient(to right, #1f2937, #111827, #000);
+    padding: 1.5rem 1rem;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer p {
+    color: #9CA3AF;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.footer-icon {
+    color: #9CA3AF;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-icon:hover {
+    color: #FFFFFF;
+    transform: translateY(-5px);
+}
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-gray-400 {
+    color: #9CA3AF;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.space-x-6 > * + * {
+    margin-left: 1.5rem;
+}
+
+.hero {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100vh;
+	color: #ffffff;
+}
+
+.hero h1 {
+	font-size: 3rem;
+}
+
+.hero p {
+	font-size: 1.25rem;
+}

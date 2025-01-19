@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c1e18bfe.css",
+    "main.js": "/static/js/main.c3b2ff98.js",
+    "static/media/Vihari.png": "/static/media/Vihari.757a4530b96b956cecd0.png",
+    "static/media/ImageSearch.png": "/static/media/ImageSearch.e1a9fd6c6c4442dd8da3.png",
+    "static/media/Learnify.png": "/static/media/Learnify.66adf15083208c20c607.png",
+    "static/media/DailyTools.png": "/static/media/DailyTools.a9d560eb7cd821827f0b.png",
+    "static/media/BookListApplication.png": "/static/media/BookListApplication.1a14c84667c10f4c745c.png",
+    "static/media/AnimalsApp.png": "/static/media/AnimalsApp.71fb3b2328fb7eca824e.png",
+    "static/media/Code It.png": "/static/media/Code It.7740a4e0a9abdd5d7a9f.png",
+    "index.html": "/index.html",
+    "main.c1e18bfe.css.map": "/static/css/main.c1e18bfe.css.map",
+    "main.c3b2ff98.js.map": "/static/js/main.c3b2ff98.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1e18bfe.css",
+    "static/js/main.c3b2ff98.js"
+  ]
+}
