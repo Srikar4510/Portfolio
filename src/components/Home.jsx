@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <Background>
-      <div className="w-screen min-h-screen flex items-center justify-center text-white p-4" style={{ marginTop: '4rem' }}>
+      <div className="w-screen min-h-screen flex items-center justify-center text-white p-4 mt-[7rem] lg:mt-0">
         <div className="flex flex-col lg:flex-row items-center gap-10 p-8 bg-white bg-opacity-10 backdrop-blur-md rounded-3xl shadow-2xl">
           {/* Text Section */}
           <div className="text-center lg:text-left max-w-lg">
