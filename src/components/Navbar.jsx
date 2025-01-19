@@ -46,7 +46,9 @@ const Navbar = () => {
           <Link to='/' className="hover:text-blue-400">Home</Link>
           <Link to='/about' className="hover:text-blue-400">About</Link>
           <Link to='/projects' className="hover:text-blue-400">Projects</Link>
+          <Link to='/experience' className="hover:text-blue-400">Experience</Link>
           <Link to='/contact' className="hover:text-blue-400">Contact</Link>
+         
         </div>
         <div className="sm:hidden">
           <button onClick={toggleMobileMenu} className="text-2xl focus:outline-none">
