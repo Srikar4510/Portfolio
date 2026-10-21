@@ -1,79 +1,55 @@
-
 # Portfolio
 
-This is my personal portfolio website built using React and Tailwind CSS. It showcases my skills, projects, and experiences as a software developer.
+My personal portfolio: [srikarambula.netlify.app](https://srikarambula.netlify.app/).
 
-## Features
+Built with React, Tailwind CSS and Framer Motion, with light and dark mode. Pages: Home (with an interactive
+"ask me" terminal), About (skills and LeetCode stats), Experience, Projects, Hobbies (a cricket nets mini-game and
+an F1 lights-out reaction test) and Contact (EmailJS).
 
-- **About Me Section**: Provides an overview of my background and expertise.
-- **Skills Section**: Displays my technical skills and proficiencies.
-- **Projects Section**: Highlights the projects I have worked on with live links and GitHub repositories.
-- **Contact Section**: Provides ways to get in touch with me.
+## Update the content
 
-## Technologies Used
+Almost everything the site says lives in one file: [`src/data/profile.js`](src/data/profile.js).
+Edit it to change the intro, experience, projects, skills or socials. Project screenshots are in
+`src/assets/`, and the resume served by the site is `public/Srikar_Ambula_Resume.pdf`.
 
-- **Frontend**: React.js, Tailwind CSS
-- **Deployment**: Netlify
+## LeetCode stats
 
-## Getting Started
+`npm run build` first runs `scripts/fetch-leetcode.js`, which saves my public LeetCode numbers to
+`src/data/leetcode.json`, so every deploy shows fresh stats. If LeetCode can't be reached, the saved copy is used.
+Run `node scripts/fetch-leetcode.js` to refresh it by hand.
 
-To run this project locally, follow these steps:
+## Run locally
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Srikar4510/Portfolio.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd Portfolio
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-5. Open your browser and visit `http://localhost:3000` to view the portfolio.
-
-## Deployment
-
-This portfolio is deployed on **Netlify**. You can view the live version [here](https://srikarambula.netlify.app/).
-
-## Folder Structure
-
-```
-Portfolio/
-├── public/
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
-├── src/
-│   ├── components/
-│   ├── App.js
-│   ├── index.js
-│   └── styles.css
-├── .gitignore
-├── package.json
-├── tailwind.config.js
-└── README.md
+```bash
+npm install
+npm start
 ```
 
-## Contributing
+Then open http://localhost:3000.
 
-If you'd like to suggest changes or contribute, feel free to fork this repository and submit a pull request.
+## Build
 
-## License
+```bash
+npm run build
+```
 
-This project is licensed under the [MIT License](LICENSE).
+The production files go to `build/`. Netlify serves the site from there; `public/_redirects` makes page
+refreshes on routes like `/projects` work.
 
----
+## Structure
 
-### Connect with Me
+```
+src/
+  data/profile.js        all site content
+  pages/                 one file per route
+  components/            navbar, footer, background, cards, animation helpers
+  components/hobbies/    cricket nets, F1 lights-out game, F1 car animation
+  theme.js               light/dark mode
+  index.css              colour tokens (light + dark), Tailwind layers, animations
+scripts/fetch-leetcode.js  build-time LeetCode stats
+```
 
-- **LinkedIn**: [My LinkedIn Profile](https://www.linkedin.com/in/srikar-ambula-66a647277/)
-- **GitHub**: [Srikar4510](https://github.com/Srikar4510)
+## Connect
+
+- LinkedIn: [Srikar Ambula](https://www.linkedin.com/in/srikar-ambula-66a647277/)
+- GitHub: [Srikar4510](https://github.com/Srikar4510)

@@ -1,22 +1,40 @@
 /** @type {import('tailwindcss').Config} */
+// Colours come from CSS variables (see index.css) so light and dark mode share the same class names.
+const v = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}","./node_modules/flowbite/**/*.js"],
+  darkMode: 'class',
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Nunito', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'Nunito', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      },
       colors: {
-        gray: {
-          800: '#2d3748',
-          900: '#1a202c',
+        paper: v('paper'),
+        surface: v('surface'),
+        night: v('night'),
+        ink: {
+          DEFAULT: v('ink'),
+          soft: v('ink-soft'),
+          muted: v('ink-muted'),
         },
-        purple: {
-          700: '#6b46c1',
+        line: v('line'),
+        accent: {
+          DEFAULT: v('accent'),
+          soft: v('accent-soft'),
         },
-        blue: {
-          700: '#2b6cb0',
-          400: '#63b3ed',
-        },
+        brand: v('brand'),
+        'on-brand': v('on-brand'),
+        pop: v('pop'),
+      },
+      boxShadow: {
+        soft: '0 1px 2px rgb(var(--shadow) / 0.05), 0 10px 30px -14px rgb(var(--shadow) / var(--shadow-strength))',
+        lift: '0 2px 6px rgb(var(--shadow) / 0.06), 0 24px 48px -20px rgb(var(--shadow) / calc(var(--shadow-strength) * 1.8))',
       },
     },
   },
-  plugins: [require('flowbite/plugin')],
-}
+  plugins: [],
+};
