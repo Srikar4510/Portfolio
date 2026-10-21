@@ -11,6 +11,15 @@ const OUTCOMES = [
   { key: 'bowled', runs: 0, label: 'BOWLED!', weight: 20, wicket: true },
 ];
 
+// Every 50 runs the batter celebrates.
+const MILESTONES = { 50: 'FIFTY!', 100: 'CENTURY!', 150: '150!', 200: 'DOUBLE HUNDRED!' };
+const milestoneFor = (before, after) => {
+  const n = Math.floor(after / 50) * 50;
+  if (n < 50 || n <= before) return null;
+  return { runs: n, title: MILESTONES[n] || `${n}!` };
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 const pick = () => {
   let r = Math.random() * OUTCOMES.reduce((s, o) => s + o.weight, 0);
   return OUTCOMES.find((o) => (r -= o.weight) < 0) || OUTCOMES[0];
@@ -33,10 +42,19 @@ const CricketNets = () => {
   const [busy, setBusy] = useState(false);
   const [result, setResult] = useState(null);
   const [score, setScore] = useState({ runs: 0, wickets: 0, balls: 0 });
+  const [milestone, setMilestone] = useState(null);
   const [confetti, fire] = useConfetti();
 
+  const allOut = score.wickets >= 10;
+
+  const newInnings = () => {
+    setScore({ runs: 0, wickets: 0, balls: 0 });
+    setResult(null);
+    setMilestone(null);
+  };
+
   const bowl = async () => {
-    if (busy) return;
+    if (busy || allOut) return;
     const outcome = pick();
     setBusy(true);
     setResult(null);
@@ -62,6 +80,23 @@ const CricketNets = () => {
       wickets: s.wickets + (outcome.wicket ? 1 : 0),
       balls: s.balls + 1,
     }));
+
+    // Bowling is blocked while busy, so `score` here is still the total before this ball.
+    const reached = milestoneFor(score.runs, score.runs + outcome.runs);
+    if (reached) {
+      await sleep(700);
+      setResult(null);
+      setMilestone(reached);
+      bat.start({ rotate: -165, transition: { type: 'spring', stiffness: 120, damping: 10 } });
+      fire('25%', '40%', 34);
+      await sleep(350);
+      fire('75%', '40%', 34);
+      await sleep(350);
+      fire('50%', '25%', reached.runs % 100 === 0 ? 60 : 40);
+      await sleep(2000);
+      setMilestone(null);
+      await bat.start({ rotate: 0, transition: { duration: 0.4 } });
+    }
     setBusy(false);
   };
 
@@ -122,7 +157,53 @@ const CricketNets = () => {
         </svg>
 
         <AnimatePresence>
-          {result && (
+          {allOut && !busy && (
+            <motion.div
+              key="all-out"
+              className="absolute inset-0 grid place-items-center bg-black/55 backdrop-blur-[2px]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="rounded-2xl bg-white px-8 py-6 text-center text-night shadow-lift"
+                initial={{ scale: 0.7, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.2 }}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-night/60">Innings over</p>
+                <p className="mt-1 font-display text-3xl font-semibold">All out!</p>
+                <p className="mt-1 text-night/70">
+                  {score.runs} runs in {Math.floor(score.balls / 6)}.{score.balls % 6} overs
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {milestone && (
+            <motion.div
+              key={`m-${milestone.runs}`}
+              className="pointer-events-none absolute inset-x-0 top-5 grid place-items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, y: -10 }}
+            >
+              <motion.div
+                className="rounded-2xl bg-gradient-to-br from-[#ffd54a] to-[#f59e0b] px-7 py-4 text-center text-[#3b2405] shadow-lift"
+                initial={{ scale: 0.4, rotate: -6 }}
+                animate={{ scale: [0.4, 1.12, 1], rotate: [-6, 3, 0] }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
+                <p className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">{milestone.title}</p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {result && !allOut && !milestone && (
             <motion.div
               key={score.balls}
               className={`pointer-events-none absolute left-1/2 top-6 -translate-x-1/2 rounded-full px-5 py-2 font-display text-xl shadow-lift sm:text-2xl ${
@@ -153,14 +234,20 @@ const CricketNets = () => {
           </div>
         </div>
         <div className="flex gap-2">
-          {score.balls > 0 && (
-            <button type="button" onClick={() => setScore({ runs: 0, wickets: 0, balls: 0 })} className="btn-ghost px-4 py-2.5" disabled={busy}>
+          {score.balls > 0 && !allOut && (
+            <button type="button" onClick={newInnings} className="btn-ghost px-4 py-2.5" disabled={busy}>
               Reset
             </button>
           )}
-          <button type="button" onClick={bowl} disabled={busy} className="btn-primary px-5 py-2.5 disabled:opacity-60">
-            {busy ? 'In play…' : 'Bowl a delivery'}
-          </button>
+          {allOut ? (
+            <button type="button" onClick={newInnings} className="btn-primary px-5 py-2.5">
+              New innings
+            </button>
+          ) : (
+            <button type="button" onClick={bowl} disabled={busy} className="btn-primary px-5 py-2.5 disabled:opacity-60">
+              {busy ? 'In play…' : 'Bowl a delivery'}
+            </button>
+          )}
         </div>
       </div>
     </div>

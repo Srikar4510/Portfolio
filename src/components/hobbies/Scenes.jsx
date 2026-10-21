@@ -26,7 +26,7 @@ export const CricketScene = () => (
     {/* batter */}
     <g>
       <circle cx="246" cy="82" r="8" fill="#f1f5f9" />
-      <rect x="237" y="75" width="18" height="5" rx="2.5" className="fill-brand" />
+      <rect x="237" y="75" width="18" height="5" rx="2.5" fill="#1e3a8a" />
       <rect x="239" y="91" width="14" height="30" rx="6" fill="#f1f5f9" />
       <rect x="240" y="119" width="5" height="27" rx="2.5" fill="#fff" />
       <rect x="247" y="119" width="5" height="27" rx="2.5" fill="#fff" />
@@ -56,8 +56,8 @@ export const CricketScene = () => (
       animate={{ scale: [0, 0, 1.15, 1, 0], opacity: [0, 0, 1, 1, 0] }}
       transition={{ ...LOOP, times: [0, 0.66, 0.74, 0.88, 1] }}
     >
-      <rect x="78" y="54" width="64" height="30" rx="15" className="fill-brand" />
-      <text x="110" y="75" textAnchor="middle" fontFamily="Poppins, sans-serif" fontWeight="700" fontSize="17" fill="#fff">
+      <rect x="78" y="54" width="64" height="30" rx="15" fill="#ffffff" />
+      <text x="110" y="75" textAnchor="middle" fontFamily="Poppins, sans-serif" fontWeight="700" fontSize="17" fill="#14532d">
         SIX!
       </text>
     </motion.g>
